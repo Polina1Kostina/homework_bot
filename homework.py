@@ -116,13 +116,8 @@ def main():
             )
             response = get_api_answer(current_timestamp)
             check_response(response)
-            print(response)
             current_timestamp = response['current_date']
-            try:
-                logger.debug('Начат запрос базы')
-                homework = response['homeworks'][0]
-            except Exception as error:
-                logger.error(f'Ошибка при запросе к {ENDPOINT}: {error}')
+            homework = response['homeworks'][0]
             try:
                 message = parse_status(homework)
             except Exception:
